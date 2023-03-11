@@ -1,4 +1,4 @@
-/**trtrt
+/**
  * @class Car
  * @example
  * Car("Ford", "Green", 250.0, 280);
@@ -29,6 +29,7 @@ class Car {
     };
 }
 
+// hello world
 /**
  * Curried function to compare two arrays of same type
  * @template T
