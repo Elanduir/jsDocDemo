@@ -94,3 +94,8 @@ const compArray = (baseArray, compArray) =>
 
 /** @type {boolean} */
 const same = compArray([1, 2], [1, 2]);
+
+/** @type {number} */
+let x = 0;
+
+x = "";
