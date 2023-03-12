@@ -1,3 +1,7 @@
+
+//ts-check
+
+
 /**
  * @class Car
  * @example
