@@ -22,6 +22,7 @@ class Car {
 
   /**
    * Dive car for distance
+   * @function
    * @param distance {number}
    */
   drive = distance => {
@@ -39,6 +40,7 @@ class Car {
 
 /**
  * Create a new person object.
+ * @function
  * @param {string} name - The person's name.
  * @param {number} age - The person's age.
  * @param {string} gender - The person's gender.
@@ -63,23 +65,22 @@ function createPerson(name, age, gender) {
   };
 }
 
-// hello world
 /**
- * Curried function to compare two arrays of same type
- * @template T
- * @param baseArray {!Array<T>} First array dictates type
- * @returns {function(!Array<T>): boolean}
+ * Adds two numbers
+ * @function
+ * @param {number} x - the first number
+ * @returns {function(number): number} - function that accepts a number and returns a number
  * @example
- * compCurryArray([1, 2])([1, 2]) === true;
- * compCurryArray([])([1, 2]) === false;
+ * const result = sum(2)(3);
  */
-const compCurryArray = baseArray => compArray =>
-  baseArray.length === compArray.length &&
-  baseArray.every((item, index) => compArray[index] === item);
+function sum(x) {
+  return y => x + y;
+}
 
 /**
  * Function to compare two arrays of same Type
  * @template T
+ * @function
  * @param baseArray {!Array<T>} First array dictates type
  * @param compArray {!Array<T>} Second array
  * @returns {boolean}
