@@ -24,7 +24,7 @@ class Car {
    * Dive car for distance
    * @param distance {number}
    */
-  drive = (distance) => {
+  drive = distance => {
     this.distanceDriven += distance;
   };
 }
@@ -73,7 +73,7 @@ function createPerson(name, age, gender) {
  * compCurryArray([1, 2])([1, 2]) === true;
  * compCurryArray([])([1, 2]) === false;
  */
-const compCurryArray = (baseArray) => (compArray) =>
+const compCurryArray = baseArray => compArray =>
   baseArray.length === compArray.length &&
   baseArray.every((item, index) => compArray[index] === item);
 
