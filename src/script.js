@@ -3,7 +3,8 @@
 
 //constants
 /**
- * @const {number}
+ * @const
+ * @type {number}
  */
 const FOO = 1;
 
