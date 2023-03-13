@@ -1,38 +1,152 @@
+//@ts-check
 
-//ts-check
+
+//constants
+/**
+ * @const {number}
+ */
+const FOO = 1;
+
+
+//Types
+/** @type {string} */
+let foo;
+foo = "Hallo";  // marked as correct
+foo = 3.0;      // marked as wrong
+
+
+// multiple Types / Union
+/** @type {(number|boolean)}*/
+let abc;
+abc = 0;      // marked as correct
+abc = true;   // marked as correct
+abc = [];     // marked as wrong
+
+
+
+// Optional parameter @param {number=} foo
+
+// variable number of that type  @param {...number} num
+
+// Generics
+// nullable non nullable types {?number} {!number}
+/**
+ * Function to compare two arrays of same Type
+ * @template T
+ * @function
+ * @param baseArray {!Array<T>} First array dictates type
+ * @param compArray {?Array<T>} Second array
+ * @returns {boolean}
+ * @example
+ * compareArrays([1, 2], [1, 2]) === true;
+ * compareArrays([], [1, 2]) === false;
+ */
+const compArray = (baseArray, compArray) =>
+    compArray !== null && baseArray.length === compArray.length &&
+    baseArray.every((item, index) => compArray[index] === item);
+
+/** @type {boolean} */
+const same = compArray([1, 2], [1, 2]);   // true
+const notSame = compArray([1, 2], null);  // false
+
+
+// Curried function
+/**
+ * Adds two numbers
+ * @function
+ * @param {number} x - the first number
+ * @returns {function(number): number} - function that accepts a number and returns a number
+ * @example
+ * const result = sum(2)(3);
+ */
+const sum = x => {
+  return y => x + y;
+};
+
 
 
 /**
- * @class Car
+ * Class representing a point.
+ * @Class
+ * @param x {number} - The x value
+ * @param y {number} - The y value
  * @example
- * Car("Ford", "Green", 250.0, 280);
+ * Point(2, 3);
  */
-class Car {
+const Point = class {
   /**
-   * Constructor for class Car
-   * @param brand {!string} Brand of the car
-   * @param color {?string} Color of the car
-   * @param topSpeed {number} Maximal speed of the car
-   * @param hp {number} Horsepower of car
+   * Create a point.
    * @constructor
+   * @param {number} x - The x value.
+   * @param {number} y - The y value.
    */
-  constructor(brand, color, topSpeed, hp) {
-    this.brand = brand;
-    this.color = color;
-    this.topSpeed = topSpeed;
-    this.hp = hp;
-    this.distanceDriven = 0;
+  constructor(x, y) {
+    // ...
+    self.x = x;
+    self.y = y;
   }
 
   /**
-   * Dive car for distance
-   * @function
-   * @param distance {number}
+   * Get the x value.
+   * @return {number} The x value.
    */
-  drive = distance => {
-    this.distanceDriven += distance;
-  };
+  getX() {
+    return self.x;
+  }
+
+  /**
+   * Get the y value.
+   * @return {number} The y value.
+   */
+  getY() {
+    return self.y;
+  }
+};
+
+/**
+ * Convert a string containing two comma-separated numbers into a point.
+ * @param {string} str - The string containing two comma-separated numbers.
+ * @return {Point} A Point object.
+ */
+const pointFromString = (str) => {
+  return new Point(Number(str.split(",")[0]), Number(str.split(",")[1]));
+};
+// also @implements , @interface, @ other important tags
+// Extending classes
+
+/**
+ * Class representing a dot.
+ * @class
+ * @extends Point
+ * @param {number} x - The x value.
+ * @param {number} y - The y value.
+ * @param {number} width - The width of the dot, in pixels.
+ */
+class Dot extends Point {
+  /**
+   * Create a dot.
+   * @constructor
+   * @param {number} x - The x value.
+   * @param {number} y - The y value.
+   * @param {number} width - The width of the dot, in pixels.
+   */
+  constructor(x, y, width) {
+    super(x, y);
+    this.width = width;
+    // ...
+  }
+
+  /**
+   * Get the dot's width.
+   * @function getWidth
+   * @return {number} The dot's width, in pixels.
+   */
+  getWidth() {
+    return this.width;
+  }
 }
+
+
 
 /**
  * @typedef {Object} Person
@@ -44,13 +158,13 @@ class Car {
 
 /**
  * Create a new person object.
- * @function
+ * @function createPerson
  * @param {string} name - The person's name.
  * @param {number} age - The person's age.
  * @param {string} gender - The person's gender.
  * @returns {Person} - An object representing the person.
  */
-function createPerson(name, age, gender) {
+const createPerson = (name, age, gender) => {
   /**
    * A named function that logs a greeting to the console.
    * @function
@@ -67,39 +181,4 @@ function createPerson(name, age, gender) {
     gender: gender,
     sayHello: sayHello,
   };
-}
-
-/**
- * Adds two numbers
- * @function
- * @param {number} x - the first number
- * @returns {function(number): number} - function that accepts a number and returns a number
- * @example
- * const result = sum(2)(3);
- */
-function sum(x) {
-  return y => x + y;
-}
-
-/**
- * Function to compare two arrays of same Type
- * @template T
- * @function
- * @param baseArray {!Array<T>} First array dictates type
- * @param compArray {!Array<T>} Second array
- * @returns {boolean}
- * @example
- * compareArrays([1, 2], [1, 2]) === true;
- * compareArrays([], [1, 2]) === false;
- */
-const compArray = (baseArray, compArray) =>
-  baseArray.length === compArray.length &&
-  baseArray.every((item, index) => compArray[index] === item);
-
-/** @type {boolean} */
-const same = compArray([1, 2], [1, 2]);
-
-/** @type {number} */
-let x = 0;
-
-x = "";
+};
