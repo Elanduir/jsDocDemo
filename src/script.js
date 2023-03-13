@@ -22,14 +22,14 @@ abc = 0;      // marked as correct
 abc = true;   // marked as correct
 abc = [];     // marked as wrong
 
-
-
 // Optional parameter @param {number=} foo
 
 // variable number of that type  @param {...number} num
 
-// Generics
-// nullable non nullable types {?number} {!number}
+// nullable and non nullable types {?number} {!number}
+
+// Generics & Functions
+
 /**
  * Function to compare two arrays of same Type
  * @template T
@@ -77,8 +77,8 @@ const Point = class {
   /**
    * Create a point.
    * @constructor
-   * @param {number} x - The x value.
-   * @param {number} y - The y value.
+   * @private  {number} x - The x value.
+   * @private {number} y - The y value.
    */
   constructor(x, y) {
     // ...
@@ -126,9 +126,9 @@ class Dot extends Point {
   /**
    * Create a dot.
    * @constructor
-   * @param {number} x - The x value.
-   * @param {number} y - The y value.
-   * @param {number} width - The width of the dot, in pixels.
+   * @private {number} x - The x value.
+   * @private {number} y - The y value.
+   * @private {number} width - The width of the dot, in pixels.
    */
   constructor(x, y, width) {
     super(x, y);
